@@ -14,10 +14,10 @@ body{
 
 #main{
     display: grid;
-    grid-template-columns: repeat(6,10vmin);
-    grid-template-rows: repeat(6,10vmin);
-    column-gap: 3vmin;
-    row-gap: 3vmin;
+    grid-template-columns: repeat(6,12vmin);
+    grid-template-rows: repeat(6,12vmin);
+    column-gap: 1vmin;
+    row-gap: 1vmin;
     justify-items: center;
 }
 
@@ -50,9 +50,9 @@ body{
 
 @media only screen and (max-device-width: 768px) {
     #main{
-        grid-template-columns: repeat(4,18vmin);
-        grid-template-rows: repeat(4,18vmin);
-        column-gap: 3vmin;
-        row-gap: 3vmin;
+        grid-template-columns: repeat(4,21vmin);
+        grid-template-rows: repeat(4,21vmin);
+        column-gap: 1vmin;
+        row-gap: 1vmin;
     }
 }
