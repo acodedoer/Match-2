@@ -10,7 +10,7 @@
 
     for (let i = 0; i < n; i++){
         for (let j = 0; j < n; j++){
-            divs+="<div>"+i+j+"</div>"
+            divs+="<div class='container'> <div class='card'> <div class='item' id='"+i+j+"item'></div> <div class='cover' id='"+i+j+"cover'></div> </div> </div>"
         }
     }
     console.log(divs);
