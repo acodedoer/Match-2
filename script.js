@@ -19,6 +19,7 @@ function setupGrid (){
 
 function setupCSS (){
     let item_covers = document.querySelectorAll('.cover');
+    let count = item_covers.length/2;
     let first_item_checked = false;
     let first_item;
     let block = false;
@@ -33,14 +34,14 @@ function setupCSS (){
                 }
                 else{                                                                        //if one item is selected, slect this and block
                     block = true;
-                    console.log(item_cover.getAttribute("data-id"))
-                    console.log(first_item.getAttribute("data-id"))
-
                     if(item_cover.getAttribute("data-id") == first_item.getAttribute("data-id")){       //check if the two items have the same id, then leave them uncovered or set time to cover both
+                        count-=1;
                         first_item_checked = false;
                         first_item = null;
                         block = false;
-                        console.log("same")
+                        item_cover.addEventListener('transitionend', function(){
+                            checkIfDone(count);
+                        });                      
                     }
                     else{
                         setTimeout(
@@ -56,6 +57,12 @@ function setupCSS (){
             } 
         })
     })
+}
+
+function checkIfDone(count){
+    if(count<=0){
+        alert("You did it!");
+    }
 }
 
 (function(){
