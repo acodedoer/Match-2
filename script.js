@@ -1,5 +1,4 @@
 function setupGrid (){
-
     let n = 0;
     let divs = "";
     if(screen.width > 768){
@@ -8,10 +7,20 @@ function setupGrid (){
     else{
         n = 4;
     }
-    let arr = [1,3,4,5,6,4,3,2,3,5,6,7,8,9,6,7,6,5,4,3,2,1,3,4,5,6,8] //test array in place of svg images
+
+
+    let colors = ["#3772FF", "#DF2935", "#FDCA40","#5B507A", "#EB4511", "#3D0C11", "#533E2D", "#242331"]
+    let arr = [{"key":"1","item":"<i class='fas  fa-dice-five' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"2","item":"<i class='fas fa-square' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"3","item":"<i class='fas fa-star' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"4","item":"<i class='fas fa-square-full' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"5","item":"<i class='fas fa-bullseye' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"6","item":"<i class='fas fa-moon' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"7","item":"<i class='fas fa-fire-alt' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"8","item":"<i class='fas fa-circle' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"9","item":"<i class='fas fa-dot-circle' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"10","item":"<i class='far fa-dot-circle' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"11","item":"<i class='fas fa-egg' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"12","item":"<i class='fas fa-fire' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"13","item":"<i class='fas fa-icicles' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"14","item":"<i class='fab fa-jira' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"15","item":"<i class='fas fa-play' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"16","item":"<i class='fas fa-burn' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"17","item":"<i class='fas fa-circle-notch' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"18","item":"<i class='fas fa-grip-lines' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"19","item":"<i class='fas fa-grip-lines-vertical' style='color:"+colors[random(0,7)] +"'></i>"},{"key":"20","item":"<i class='fas fa-bars' style='color:"+colors[random(0,7)] +"'></i>"}] //test array in place of svg images
+    shuffle(arr);
+    let items_array = arr.slice(0,(n*n)/2);
+    items_array.push(...items_array);
+    shuffle(items_array);
+
+    let items_counter = 0;
     for (let i = 0; i < n; i++){
         for (let j = 0; j < n; j++){
-            divs+="<div class='card'> <div class='item' ></div> <div class='cover' data-id = '"+arr[j]+"'></div> </div>"
+            divs+="<div class='card'> <div class='item' >"+items_array[items_counter].item+"</div> <div class='cover' data-id = '"+items_array[items_counter].key+"'></div> </div>"
+            items_counter+=1;
         }
     }
     document.querySelector("#main").innerHTML = divs;
@@ -64,6 +73,16 @@ function checkIfDone(count){
         alert("You did it!");
     }
 }
+
+function random(a, b){
+    let min=a; 
+    let max=b;  
+    return Math.floor(Math.random() * (+max - +min)) + +min;   
+}
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
 
 (function(){
     setupGrid();
